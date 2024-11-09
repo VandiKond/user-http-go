@@ -43,6 +43,11 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 		if err.Error() == user.UAE {
 			http.Error(w, "User already exists", http.StatusConflict)
 			return
+		} else if err.Error() == user.NVD {
+			http.Error(w, "Not valid input data", http.StatusNotAcceptable)
+			return
+		} else if err.Error() == user.DTS {
+			http.Error(w, "Input data to short", http.StatusNotAcceptable)
 		}
 		http.Error(w, "Failed to create user", http.StatusInternalServerError)
 	}

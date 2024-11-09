@@ -7,6 +7,15 @@ import (
 	"github.com/VandiKond/user-http-go/Backend/operations"
 )
 
+func IsLetter(s string) bool {
+	for _, r := range s {
+		if (r < 'a' || r > 'z') && (r < 'A' || r > 'Z') && r != '!' && r != '*' && r != '_' && r != '-' && r != '&' && r != '#' {
+			return false
+		}
+	}
+	return true
+}
+
 // Creates a new user
 //
 // login -- users login
@@ -20,6 +29,15 @@ func NewUser(login string, password string, allUsers *[]User) (*User, error) {
 	ok := CheckExistence(login, *allUsers)
 	if ok != nil {
 		return nil, errors.New(UAE)
+	}
+
+	// Cheeking that login and password are valid
+	if !IsLetter(login) || !IsLetter(password) {
+		return nil, errors.New(NVD)
+	}
+
+	if len(login) < 4 || len(password) < 10 {
+		return nil, errors.New(DTS)
 	}
 
 	// Creates a password
