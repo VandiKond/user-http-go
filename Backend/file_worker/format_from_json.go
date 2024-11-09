@@ -3,7 +3,8 @@ package file_worker
 import (
 	"encoding/json"
 	"fmt"
-	"os/user"
+
+	"github.com/VandiKond/user-http-go/Backend/user"
 )
 
 // Unmarshal json data to user.User
