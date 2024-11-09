@@ -2,14 +2,17 @@ package user
 
 import (
 	"errors"
+	"log"
 
 	hash_password "github.com/VandiKond/user-http-go/Backend/hash"
-	"github.com/VandiKond/user-http-go/Backend/operations"
 )
 
-func IsLetter(s string) bool {
-	for _, r := range s {
-		if (r < 'a' || r > 'z') && (r < 'A' || r > 'Z') && r != '!' && r != '*' && r != '_' && r != '-' && r != '&' && r != '#' {
+func isValidText(text string) bool {
+	for _, char := range text {
+		if !((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z') ||
+			char == '!' || char == '#' || char == '&' || char == '*' || char == '-' ||
+			char == '_' || char == '?' || char == ',' || char == '.' ||
+			(char >= '0' && char <= '9')) {
 			return false
 		}
 	}
@@ -30,9 +33,8 @@ func NewUser(login string, password string, allUsers *[]User) (*User, error) {
 	if ok != nil {
 		return nil, errors.New(UAE)
 	}
-
 	// Cheeking that login and password are valid
-	if !IsLetter(login) || !IsLetter(password) {
+	if !isValidText(login) || !isValidText(password) {
 		return nil, errors.New(NVD)
 	}
 
@@ -46,12 +48,12 @@ func NewUser(login string, password string, allUsers *[]User) (*User, error) {
 		return nil, err
 	}
 
-	// Logs the operation
-	operations.NewOperation(CREATE_USER, "{}", login, 0)
-
 	// Ads the user
-	user := User{Login: login, passwordHash: hash}
+	user := User{Login: login, PasswordHash: hash}
 	*allUsers = append(*allUsers, user)
+
+	// Logs the creation
+	log.Println(CREATE_USER, login)
 
 	return &user, nil
 

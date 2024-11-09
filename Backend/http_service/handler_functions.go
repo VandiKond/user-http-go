@@ -15,7 +15,7 @@ func basicHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Unauthorized", http.StatusUnauthorized)
 		return
 	}
-	users, _, err := file_worker.GetUsersArray()
+	users, err := file_worker.GetUsersArray()
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
@@ -24,7 +24,7 @@ func basicHandler(w http.ResponseWriter, r *http.Request) {
 	User, ok, err := user.Login(username, password, &users)
 	if err != nil {
 		if err.Error() == user.UNF {
-			http.Error(w, "User not found", http.StatusInternalServerError)
+			http.Error(w, "User not found", http.StatusUnauthorized)
 			return
 		}
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)

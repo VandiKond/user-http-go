@@ -1,7 +1,7 @@
 package file_worker
 
 import (
-	"fmt"
+	"errors"
 	"os"
 )
 
@@ -24,7 +24,7 @@ func GetFile(fileName string) (*os.File, error) {
 	file, err = os.Open(fileName)
 	if err != nil {
 		// Returning the error
-		return nil, fmt.Errorf("%s: %w", EOF, err)
+		return nil, errors.New(EOF)
 	}
 
 	// Returning the file

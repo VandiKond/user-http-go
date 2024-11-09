@@ -1,57 +1,40 @@
 package main
 
 import (
-	"bytes"
-	"encoding/json"
+	"errors"
 	"fmt"
-	"io"
-	"net/http"
+
+	"github.com/VandiKond/user-http-go/Console/console"
+	"github.com/VandiKond/user-http-go/Console/login"
+	"github.com/VandiKond/user-http-go/Console/register"
+	console_user "github.com/VandiKond/user-http-go/Console/user"
 )
 
-type RegistrationData struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
+func main() {
+	fmt.Println("Hi! let's start")
+	panic(start())
 }
 
-func main() {
-	// Create registration data
-	registrationData := RegistrationData{
-		Username: "Vandi",
-		Password: "10iui78!90kj",
+func start() error {
+	fmt.Println("do you want to sign up or sing in? write 'up' to create a new account, write 'in' to log in")
+	var answer string
+	console.Get(nil, &answer)
+	var user *console_user.User
+	var err error
+	switch answer {
+	case "up":
+		user, err = register.Register("You've chosen creating a new account. Do you want to continue?")
+		if err != nil || user == nil {
+			return start()
+		}
+	case "in":
+		user, err = login.LogIn("You've chosen logging in. Do you want to continue?")
+		if err != nil || user == nil {
+			return start()
+		}
+	default:
+		fmt.Println("Invalid input")
 	}
-
-	// Encode data to JSON
-	jsonData, err := json.Marshal(registrationData)
-	if err != nil {
-		panic(err)
-	}
-
-	// Create a new HTTP request
-	req, err := http.NewRequest("POST", "http://localhost:8080/register", bytes.NewBuffer(jsonData))
-	if err != nil {
-		panic(err)
-	}
-
-	// Set content type to JSON
-	req.Header.Set("Content-Type", "application/json")
-
-	// Create an HTTP client
-	client := &http.Client{}
-
-	// Send the request and get the response
-	resp, err := client.Do(req)
-	if err != nil {
-		panic(err)
-	}
-	defer resp.Body.Close()
-
-	// Read the response body
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		panic(err)
-	}
-
-	// Print the response status code and body
-	fmt.Printf("Status code: %d\n", resp.StatusCode)
-	fmt.Println(string(body))
+	console.Get(user, &answer)
+	return errors.New(answer)
 }

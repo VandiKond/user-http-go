@@ -2,6 +2,7 @@ package file_worker
 
 import (
 	"encoding/json"
+	"errors"
 	"os"
 
 	"github.com/VandiKond/user-http-go/Backend/user"
@@ -18,7 +19,7 @@ func SaveBackupUsers(backupUsers []user.User) error {
 func saveAny(fileName string, saveData any) error {
 	data, err := json.Marshal(saveData)
 	if err != nil {
-		return err
+		return errors.New(EMU)
 	}
 
 	return os.WriteFile(fileName, []byte(data), 0666)

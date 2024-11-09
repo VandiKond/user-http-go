@@ -1,36 +1,31 @@
 package file_worker
 
 import (
-	"fmt"
+	"errors"
+	"io"
 	"os"
+
+	"github.com/VandiKond/user-http-go/Backend/user"
 )
 
-// Gets all files that are in config.go
+// Gets all users
 //
 // Returns:
-// MainFile -- the main data file
-// BackupFile -- the backup data file
-// LogFile -- the file with logs
-// Error -- the error if has one
-func GetAll() (MainFile *os.File, BackupFile *os.File, LogFile *os.File, Error error) {
-	// getting the main file
-	mainFile, err := GetFile(MAIN_FILE)
-	if err != nil {
-		return nil, nil, nil, fmt.Errorf("%s %s: %w", EGF, MAIN_FILE, err)
-	}
+// val 1: a string with data
+// val 2: error
+func GetAll() (string, error) {
+	// Getting all text
+	mainText, err := os.ReadFile(MAIN_FILE)
+	if err == io.EOF {
+		saveErr := SaveUsers([]user.User{})
+		if saveErr != nil {
+			return "", saveErr
+		}
 
-	// getting the backup file
-	backupFile, err := GetFile(BACKUP_FILE)
-	if err != nil {
-		return nil, nil, nil, fmt.Errorf("%s %s: %w", EGF, BACKUP_FILE, err)
-	}
-
-	// getting the log file
-	logFile, err := GetFile(LOG_FILE)
-	if err != nil {
-		return nil, nil, nil, fmt.Errorf("%s %s: %w", EGF, LOG_FILE, err)
+	} else if err != nil {
+		return "", errors.New(ERF)
 	}
 
 	// Returning all files
-	return mainFile, backupFile, logFile, nil
+	return string(mainText), nil
 }

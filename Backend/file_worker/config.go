@@ -6,5 +6,5 @@ const (
 	// File for backup
 	BACKUP_FILE = "backup.json"
 	// file for logging
-	LOG_FILE = "log.json"
+	LOG_FILE = "log.yaml"
 )

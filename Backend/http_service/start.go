@@ -3,7 +3,7 @@ package http_service
 import "net/http"
 
 func Start() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
 		basicHandler(w, r)
 	})
 

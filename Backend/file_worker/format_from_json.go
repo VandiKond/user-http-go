@@ -2,6 +2,7 @@ package file_worker
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 
 	"github.com/VandiKond/user-http-go/Backend/user"
@@ -16,7 +17,8 @@ func GetUserFromJSON(jsonData string) (Users []user.User, Error error) {
 	users := []user.User{}
 	err := json.Unmarshal([]byte(jsonData), &users)
 	if err != nil {
-		return nil, fmt.Errorf("%s: %w", EUJ, err)
+		fmt.Println(err, jsonData)
+		return nil, errors.New(EUJ)
 	}
 	return users, nil
 }

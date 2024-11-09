@@ -2,9 +2,9 @@ package user
 
 import (
 	"errors"
+	"log"
 
 	hash_password "github.com/VandiKond/user-http-go/Backend/hash"
-	"github.com/VandiKond/user-http-go/Backend/operations"
 )
 
 // Logs in a user
@@ -24,13 +24,12 @@ func Login(login string, password string, users *[]User) (*User, bool, error) {
 	}
 
 	// Compares passwords
-	ok, err := hash_password.CompareHash(password, user.passwordHash)
+	ok, err := hash_password.CompareHash(password, user.PasswordHash)
 	if !ok {
 		return nil, false, err
 	}
 
-	// Logs the login
-	operations.NewOperation(LOGIN, "{}", login, 0)
+	log.Println(LOGIN, login)
 
 	return user, true, nil
 }

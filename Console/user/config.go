@@ -1,4 +1,4 @@
-package user
+package console_user
 
 // The basic user
 type User struct {

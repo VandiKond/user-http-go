@@ -15,7 +15,7 @@ type RegistrationData struct {
 }
 
 func registerHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "POST" {
+	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
@@ -33,7 +33,7 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	users, _, err := file_worker.GetUsersArray()
+	users, err := file_worker.GetUsersArray()
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
