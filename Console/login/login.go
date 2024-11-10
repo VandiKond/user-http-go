@@ -53,5 +53,6 @@ func LogIn(hiMessage string) (*console_user.User, error) {
 		return nil, err
 	}
 
+	fmt.Println("Log in successful")
 	return &user, nil
 }

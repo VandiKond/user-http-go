@@ -9,7 +9,7 @@ import (
 	"github.com/VandiKond/user-http-go/Console/config"
 )
 
-func GetResponse(login string, password string, url string, method string, body io.Reader, loginMessage string) (*http.Response, error) {
+func GetResponse(login string, password string, url string, method string, body io.Reader, errorLoginMessage string) (*http.Response, error) {
 	req, err := http.NewRequest(method, config.PATH+url, body)
 	if err != nil {
 		config.EXIT_WITH_ERROR()
@@ -28,7 +28,7 @@ func GetResponse(login string, password string, url string, method string, body 
 	}
 
 	if resp.StatusCode == http.StatusUnauthorized {
-		fmt.Println(loginMessage)
+		fmt.Println(errorLoginMessage)
 		return resp, errors.New(ELI)
 	}
 	if resp.StatusCode != http.StatusOK {

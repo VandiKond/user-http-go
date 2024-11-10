@@ -18,7 +18,7 @@ import (
 // val 3 : error
 func Login(login string, password string, users *[]User) (*User, bool, error) {
 	// Checks that the user exists
-	user := CheckExistence(login, *users)
+	user, _ := CheckExistence(login, *users)
 	if user == nil {
 		return nil, false, errors.New(UNF)
 	}

@@ -26,10 +26,11 @@ func isValidText(text string) bool {
 // allUsers -- a slice of users
 //
 // Returns:
-// val 1 : error
+// val 1 : user that is created
+// val 2 : error
 func NewUser(login string, password string, allUsers *[]User) (*User, error) {
 	// Checks that user exists
-	ok := CheckExistence(login, *allUsers)
+	ok, _ := CheckExistence(login, *allUsers)
 	if ok != nil {
 		return nil, errors.New(UAE)
 	}

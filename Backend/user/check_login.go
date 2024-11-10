@@ -7,11 +7,11 @@ package user
 //
 // Returns:
 // val 1: pointer to a user or nil
-func CheckExistence(login string, users []User) *User {
-	for _, user := range users {
-		if user.Login == login {
-			return &user
+func CheckExistence(login string, users []User) (*User, int) {
+	for i, user := range users {
+		if user.Login == login && !user.Deleted {
+			return &user, i
 		}
 	}
-	return nil
+	return nil, -1
 }

@@ -14,6 +14,10 @@ func GetFunctions() map[string]Function {
 			Description: "Log out of your account",
 			Usage:       LogOut,
 		},
+		"delete": {
+			Description: "Delete your account",
+			Usage:       Delete,
+		},
 		"help": {
 			Description: "Shows all commands",
 			Usage:       Help,

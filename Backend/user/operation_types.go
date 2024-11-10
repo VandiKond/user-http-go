@@ -1,6 +1,7 @@
 package user
 
 const (
-	CREATE_USER = "create_user"
+	CREATE_USER = "create"
 	LOGIN       = "login"
+	DELETE      = "delete"
 )

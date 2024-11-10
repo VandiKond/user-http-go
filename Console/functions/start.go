@@ -11,7 +11,7 @@ import (
 )
 
 func Start() error {
-	fmt.Println("do you want to sign up or sing in? write 'up' to create a new account, write 'in' to log in")
+	fmt.Println("Do you want to sign up or sing in? write 'up' to create a new account, write 'in' to log in")
 	var answer string
 	console.Get(nil, &answer)
 	var user *console_user.User
@@ -29,6 +29,7 @@ func Start() error {
 		}
 	default:
 		fmt.Println("Invalid input")
+		return Start()
 	}
 	for {
 		console.Get(user, &answer)
@@ -39,7 +40,10 @@ func Start() error {
 				config.EXIT_WITH_ERROR()
 			}
 			if doReturn {
-				return err
+				if err != nil {
+					return err
+				}
+				return Start()
 			}
 		} else {
 			fmt.Println("Invalid command.")

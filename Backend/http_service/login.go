@@ -9,7 +9,7 @@ import (
 )
 
 // A handler to authorize
-func basicHandler(w http.ResponseWriter, r *http.Request) (*user.User, error) {
+func loginHandler(w http.ResponseWriter, r *http.Request) (*user.User, error) {
 	// Getting the password and username
 	username, password, ok := r.BasicAuth()
 

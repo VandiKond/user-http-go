@@ -10,4 +10,6 @@ type User struct {
 	Rank int `json:"rank"`
 	// The user balance
 	Balance float64 `json:"balance"`
+	// Is the user deleted
+	Deleted bool `json:"deleted"`
 }
