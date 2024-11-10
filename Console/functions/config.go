@@ -1,10 +1,10 @@
 package functions
 
-import console_user "github.com/VandiKond/user-http-go/Console/user"
+import "github.com/VandiKond/user-http-go/Console/user"
 
 type Function struct {
 	Description string
-	Usage       func(string, *console_user.User) (bool, error)
+	Usage       func(string, *user.User) (bool, error)
 	HiMessage   string
 }
 

@@ -10,10 +10,10 @@ import (
 	"github.com/VandiKond/user-http-go/Console/config"
 	"github.com/VandiKond/user-http-go/Console/console"
 	"github.com/VandiKond/user-http-go/Console/register"
-	console_user "github.com/VandiKond/user-http-go/Console/user"
+	"github.com/VandiKond/user-http-go/Console/user"
 )
 
-func LogIn(hiMessage string) (*console_user.User, error) {
+func LogIn(hiMessage string) (*user.User, error) {
 	fmt.Printf("%s y/n base:y\n", hiMessage)
 	var DoContinue string
 	console.Get(nil, &DoContinue)
@@ -45,7 +45,7 @@ func LogIn(hiMessage string) (*console_user.User, error) {
 		return nil, err
 	}
 
-	var user console_user.User
+	var user user.User
 
 	err = json.Unmarshal([]byte(body), &user)
 	if err != nil {

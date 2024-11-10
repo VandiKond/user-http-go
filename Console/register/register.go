@@ -10,10 +10,10 @@ import (
 
 	"github.com/VandiKond/user-http-go/Console/config"
 	"github.com/VandiKond/user-http-go/Console/console"
-	console_user "github.com/VandiKond/user-http-go/Console/user"
+	"github.com/VandiKond/user-http-go/Console/user"
 )
 
-func Register(hiMessage string) (*console_user.User, error) {
+func Register(hiMessage string) (*user.User, error) {
 	fmt.Printf("%s y/n base:y\n", hiMessage)
 	var DoContinue string
 	console.Get(nil, &DoContinue)
@@ -73,7 +73,7 @@ func Register(hiMessage string) (*console_user.User, error) {
 		return nil, err
 	}
 
-	var user console_user.User
+	var user user.User
 
 	err = json.Unmarshal([]byte(body), &user)
 	if err != nil {

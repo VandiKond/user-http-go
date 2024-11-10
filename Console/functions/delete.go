@@ -7,10 +7,10 @@ import (
 
 	"github.com/VandiKond/user-http-go/Console/console"
 	"github.com/VandiKond/user-http-go/Console/login"
-	console_user "github.com/VandiKond/user-http-go/Console/user"
+	"github.com/VandiKond/user-http-go/Console/user"
 )
 
-func Delete(hiMessage string, user *console_user.User) (bool, error) {
+func Delete(hiMessage string, user *user.User) (bool, error) {
 	if len(hiMessage) <= 0 {
 		hiMessage = "Do you want to delete your account?"
 	}

@@ -3,10 +3,10 @@ package functions
 import (
 	"fmt"
 
-	console_user "github.com/VandiKond/user-http-go/Console/user"
+	"github.com/VandiKond/user-http-go/Console/user"
 )
 
-func Help(hiMessage string, user *console_user.User) (bool, error) {
+func Help(hiMessage string, user *user.User) (bool, error) {
 	if len(hiMessage) <= 0 {
 		hiMessage = "All commands:"
 	}

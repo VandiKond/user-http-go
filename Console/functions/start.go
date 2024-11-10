@@ -7,14 +7,14 @@ import (
 	"github.com/VandiKond/user-http-go/Console/console"
 	"github.com/VandiKond/user-http-go/Console/login"
 	"github.com/VandiKond/user-http-go/Console/register"
-	console_user "github.com/VandiKond/user-http-go/Console/user"
+	"github.com/VandiKond/user-http-go/Console/user"
 )
 
 func Start() error {
 	fmt.Println("Do you want to sign up or sing in? write 'up' to create a new account, write 'in' to log in")
 	var answer string
 	console.Get(nil, &answer)
-	var user *console_user.User
+	var user *user.User
 	var err error
 	switch answer {
 	case "up":
