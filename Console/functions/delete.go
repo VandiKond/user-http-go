@@ -30,7 +30,7 @@ func Delete(hiMessage string, user *user.User) (bool, error) {
 
 	fmt.Println("Please enter password")
 	var password string
-	console.Get(nil, &password)
+	console.GetPassword(user, &password)
 
 	fmt.Printf("Are you sure? y/n default: n\n")
 	console.Get(user, &DoContinue)

@@ -12,6 +12,6 @@ func GetData() (string, string) {
 	console.Get(nil, &login)
 	fmt.Println("Please enter password")
 	var password string
-	console.Get(nil, &password)
+	console.GetPassword(nil, &password)
 	return login, password
 }
