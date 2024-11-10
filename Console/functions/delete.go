@@ -14,7 +14,7 @@ func Delete(hiMessage string, user *user.User) (bool, error) {
 	if len(hiMessage) <= 0 {
 		hiMessage = "Do you want to delete your account?"
 	}
-	fmt.Printf("%s y/n base:n\n", hiMessage)
+	fmt.Printf("%s y/n default: n\n", hiMessage)
 	var DoContinue string
 	console.Get(user, &DoContinue)
 	if len(DoContinue) <= 0 {
@@ -32,7 +32,7 @@ func Delete(hiMessage string, user *user.User) (bool, error) {
 	var password string
 	console.Get(nil, &password)
 
-	fmt.Printf("Are you sure? y/n base:n\n")
+	fmt.Printf("Are you sure? y/n default: n\n")
 	console.Get(user, &DoContinue)
 	if len(DoContinue) <= 0 {
 		DoContinue = "n"

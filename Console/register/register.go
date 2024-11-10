@@ -14,7 +14,7 @@ import (
 )
 
 func Register(hiMessage string) (*user.User, error) {
-	fmt.Printf("%s y/n base:y\n", hiMessage)
+	fmt.Printf("%s y/n default: y\n", hiMessage)
 	var DoContinue string
 	console.Get(nil, &DoContinue)
 	if len(DoContinue) <= 0 {

@@ -11,7 +11,7 @@ func LogOut(hiMessage string, user *user.User) (bool, error) {
 	if len(hiMessage) <= 0 {
 		hiMessage = "Do you want to log out?"
 	}
-	fmt.Printf("%s y/n base:n\n", hiMessage)
+	fmt.Printf("%s y/n default: n\n", hiMessage)
 	var DoContinue string
 	console.Get(user, &DoContinue)
 	if len(DoContinue) <= 0 {
@@ -24,5 +24,5 @@ func LogOut(hiMessage string, user *user.User) (bool, error) {
 		fmt.Println("Exiting.")
 		return false, nil
 	}
-	return true, Start()
+	return true, nil
 }
