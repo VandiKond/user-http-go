@@ -16,6 +16,9 @@ func GetFile(fileName string) (*os.File, error) {
 	// Trying to create a file
 	file, err := os.Create(fileName)
 	if err == nil {
+		if fileName == MAIN_FILE {
+			os.WriteFile(fileName, []byte("[]"), 0666)
+		}
 		// if the file was created returning it
 		return file, nil
 	}
