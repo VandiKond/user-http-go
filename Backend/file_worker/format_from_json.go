@@ -11,9 +11,9 @@ import (
 // Unmarshal json data to user.User
 //
 // Returns:
-// Users -- an array of users
-// Error -- an error
-func GetUserFromJSON(jsonData string) (Users []user.User, Error error) {
+// val 1: an array of users
+// val 2: an error
+func GetUserFromJSON(jsonData string) ([]user.User, error) {
 	users := []user.User{}
 	err := json.Unmarshal([]byte(jsonData), &users)
 	if err != nil {

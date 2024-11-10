@@ -6,11 +6,10 @@ import (
 
 // Gets users and backup users from files and returning them as an array
 //
-// Returns
-// Users -- an array of users
-// BackupUsers -- an array of backup users
-// Error -- the error
-func GetUsersArray() (Users []user.User, Error error) {
+// Returns:
+// val 1: an array of users
+// val 2: an error
+func GetUsersArray() ([]user.User, error) {
 	mainUserText, err := GetAll()
 	if err != nil {
 		return nil, err

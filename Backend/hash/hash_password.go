@@ -15,8 +15,8 @@ const (
 // password -- the user password
 //
 // Returns:
-// val 1 : the hashed password
-// val 2 : the error
+// val 1: the hashed password
+// val 2: the error
 func HashPassword(password string) (string, error) {
 	// Creating a 256 byte hash as a slice of bytes
 	hash := sha3.New256()
@@ -40,8 +40,8 @@ func HashPassword(password string) (string, error) {
 // hash -- an hashed data
 //
 // Returns:
-// val 1 : do the passwords match
-// val 2 : error
+// val 1: do the passwords match
+// val 2: error
 func CompareHash(password string, hash string) (bool, error) {
 	// Creating the hash of the password string
 	hashedPassword, err := HashPassword(password)

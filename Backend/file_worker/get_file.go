@@ -10,8 +10,8 @@ import (
 // fileName -- the name of the file
 //
 // Returns :
-// `*os.File`
-// `error`
+// val 1: file
+// val 2: error
 func GetFile(fileName string) (*os.File, error) {
 	// Trying to create a file
 	file, err := os.Create(fileName)
