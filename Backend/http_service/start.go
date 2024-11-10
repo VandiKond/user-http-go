@@ -2,6 +2,7 @@ package http_service
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 )
 
@@ -28,5 +29,6 @@ func Start() {
 
 	// Starting the server
 	http.ListenAndServe(":8080", nil)
+	log.Panicln("Started server on port 8080")
 
 }

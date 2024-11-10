@@ -81,7 +81,7 @@ func Register(hiMessage string) (*console_user.User, error) {
 		return nil, err
 	}
 
-	fmt.Printf("Registration successful. Logged in user %s", user.Login)
+	fmt.Printf("Registration successful. Logged in user %s\n", user.Login)
 	return &user, nil
 
 }
