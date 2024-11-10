@@ -10,6 +10,10 @@ type Function struct {
 
 func GetFunctions() map[string]Function {
 	return map[string]Function{
+		"me": {
+			Description: "Get user info",
+			Usage:       GetMe,
+		},
 		"out": {
 			Description: "Log out of your account",
 			Usage:       LogOut,

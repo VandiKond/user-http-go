@@ -34,7 +34,7 @@ func LogIn(hiMessage string) (*user.User, error) {
 		defer resp.Body.Close()
 	}
 	if err != nil && err.Error() == ELI {
-		return LogIn("continue?")
+		return LogIn("Do you want to continue?")
 	} else if err != nil {
 		return nil, err
 	}

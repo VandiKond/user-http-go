@@ -48,5 +48,6 @@ func Start() error {
 		} else {
 			fmt.Println("Invalid command.")
 		}
+		answer = ""
 	}
 }
